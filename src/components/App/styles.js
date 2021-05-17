@@ -55,6 +55,10 @@ export const InputContainer = styled.form`
   padding: 0 35px;
 `;
 
+export const InvalidText = styled.div`
+  padding-bottom: 30px;
+`;
+
 export const TableData = styled.td`
   padding: 10px 20px;
 `;

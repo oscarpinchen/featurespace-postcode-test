@@ -10,6 +10,7 @@ import {
   FormButton,
   FormInput,
   InputContainer,
+  InvalidText,
   TableData,
   TableHeader,
 } from "./styles";
@@ -31,10 +32,8 @@ function App() {
   const requestPostcodeData = async (postcode) => {
     const sanitisedPostcode = sanitisePostcode(postcode);
 
-    // First check if the postcode is valid
     const postcodeValid = await postcodeValidation(sanitisedPostcode);
 
-    // handle case where postcode is valid
     if (postcodeValid.result === true) {
       const postcodes = await getPostCodes(sanitisedPostcode);
 
@@ -51,9 +50,8 @@ function App() {
         history.push(`/${sanitisedPostcode}`);
       }
     } else {
-      // handle case where postcode invalid
-      setResults([]); // Hide any old results from a previously valid search
-      setIsInvalidPostcode(true); // Toggle state to show user the invalid message
+      setResults([]);
+      setIsInvalidPostcode(true);
     }
   };
 
@@ -63,7 +61,7 @@ function App() {
   };
 
   function handleChange(event) {
-    setIsInvalidPostcode(false); // Hide invalid message if user has typed
+    setIsInvalidPostcode(false);
     setPostCode(event.target.value);
   }
 
@@ -86,7 +84,9 @@ function App() {
               Submit
             </FormButton>
           </InputContainer>
-          {isInvalidPostcode && <div>The postcode you entered is invalid</div>}
+          {isInvalidPostcode && (
+            <InvalidText>The postcode you entered is invalid</InvalidText>
+          )}
           <Switch>
             <Route path="/:postcode">
               <DataContainer>
