@@ -17,7 +17,7 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 ## Coding time
 
-The app took me about 5 hours to make
+The app took me about 5 hours to make.
 
 ## Things I would continue to develop with more time:
 
